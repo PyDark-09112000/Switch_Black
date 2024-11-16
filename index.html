@@ -42,7 +42,7 @@
         <a onclick="showCategory('lutas')">LUTAS</a>
     </div>
     <div class="content">
-        <h1>Bem-vindoo ao meu site!</h1>
+        <h1>Bem-vindo ao meu site!</h1>
         <p>Este é um site hospedado no GitHub Pages.</p>
         <div id="desenhos" class="category-content">
             <h2>DESENHOS</h2>
@@ -59,7 +59,12 @@
             for (var i = 0; i < categories.length; i++) {
                 categories[i].style.display = 'none';
             }
-            document.getElementById(category).style.display = 'block';
+            var categoryElement = document.getElementById(category);
+            if (categoryElement) {
+                categoryElement.style.display = 'block';
+            } else {
+                console.error('Categoria não encontrada: ' + category);
+            }
         }
         // Mostrar a primeira categoria por padrão
         document.getElementById('desenhos').style.display = 'block';
