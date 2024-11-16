@@ -39,6 +39,7 @@
             display: inline-block; /* Exibe os contêineres lado a lado */
             margin-right: 20px; /* Espaçamento entre os vídeos */
             text-align: left; /* Alinha o conteúdo à esquerda */
+            vertical-align: top; /* Alinha os contêineres ao topo */
         }
         .iframe-container iframe {
             display: block;
@@ -46,18 +47,37 @@
         }
         .iframe-container p {
             margin: 5px 0 0 0;
+            text-align: left; /* Alinha o texto à esquerda */
+        }
+        .favorite-button {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+            cursor: pointer;
+            color: #ffcc00;
+            font-size: 20px;
+        }
+        .favorite-button.favorited {
+            color: #ffd700; /* Cor da estrela preenchida */
+        }
+        .favorite-button span {
+            margin-left: 5px;
+            font-size: 14px;
+            color: #ffffff;
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <h2>Categorias</h2>
+        <a onclick="showCategory('todos')">Todos</a>
+        <a onclick="showCategory('favoritos')">Favoritos</a>
         <a onclick="showCategory('afazenda16')">A Fazenda 16</a>
         <a onclick="showCategory('novidadesetendencias')">NOVIDADES E TENDÊNCIAS</a>
         <a onclick="showCategory('esportes')">ESPORTES</a>
         <a onclick="showCategory('abertos')">ABERTOS</a>
         <a onclick="showCategory('filmeseseries')">FILMES E SÉRIES</a>
-        <a onclick="showCategory('variedades')">VARIEDADE</a>
+        <a onclick="showCategory('variedades')">VARIEDADES</a>
         <a onclick="showCategory('noticias')">NOTÍCIAS</a>
         <a onclick="showCategory('cultura')">CULTURA</a>
         <a onclick="showCategory('kids')">KIDS</a>
@@ -66,26 +86,80 @@
     <div class="content">
         <h1>Bem-vindo ao meu site!</h1>
         <p>Este é um site hospedado no GitHub Pages.</p>
-        <div id="kids" class="category-content">
-            <h2>KIDS</h2>
+        <div id="todos" class="category-content">
+            <h2>Todos</h2>
             <div class="iframe-container">
-                <iframe name="Player" src="https://%78%6E%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%67%33%34%6C%33%66%6B%70%37%6D%73%68%31%63%6A%33%61%63%6F%62%6A%33%33%61%63%32%61%37%61%38%6C%75%66%6F%6D%6D%61%37%63%66%32%62%31%73%68%2E%78%6E%2D%2D%2D%31%6C%31%2D%2D%35%6F%34%64%78%62%2E%78%6E%2D%2D%2D%32%32%2D%2D%31%31%2D%2D%33%33%2D%2D%39%39%2D%2D%37%35%2D%2D%2D%2D%2D%2D%2D%2D%2D%62%32%35%7A%6A%66%33%6C%74%61%36%6D%77%66%36%61%34%37%64%7A%61%39%34%65%2E%78%6E%2D%2D%70%63%6B%2E%78%6E%2D%2D%7A%63%6B%2E%78%6E%2D%2D%30%63%6B%2E%78%6E%2D%2D%70%63%6B%2E%78%6E%2D%2D%79%63%6B%2E%78%6E%2D%2D%2D%2D%2D%30%62%34%61%73%6A%61%38%63%62%65%77%32%62%34%62%30%67%64%30%65%64%62%6A%6D%32%6A%70%61%31%62%31%65%39%7A%76%61%37%61%30%33%34%37%73%34%64%61%32%37%39%37%65%37%71%72%69%2E%78%6E%2D%2D%31%63%6B%32%65%31%62/player3/ch.php?canal=cartoon" frameborder="0" height="100" scrolling="no" width="200" allow="encrypted-media" allowfullscreen></iframe>
+                <iframe name="Player" src="https://" allowfullscreen></iframe>
                 <p>Cartoon Network</p>
+                <div class="favorite-button" onclick="toggleFavorite(this, 'Cartoon Network', 'https://')">
+                    ☆<span>Favorito</span>
+                </div>
             </div>
             <div class="iframe-container">
-                <iframe name="Player" src="https://" frameborder="0" height="100" scrolling="no" width="200" allow="encrypted-media" allowfullscreen></iframe>
-                <p>Nome do Desenho 2</p>
+                <iframe name="Player" src="https://" allowfullscreen></iframe>
+                <p>Cartoon Network</p>
+                <div class="favorite-button" onclick="toggleFavorite(this, 'Cartoon Network', 'https://')">
+                    ☆<span>Favorito</span>
+                </div>
+            </div>
+            <div class="iframe-container">
+                <iframe name="Player" src="https://" allowfullscreen></iframe>
+                <p>Nome do Esporte 1</p>
+                <div class="favorite-button" onclick="toggleFavorite(this, 'Nome do Esporte 1', 'https://')">
+                    ☆<span>Favorito</span>
+                </div>
+            </div>
+            <div class="iframe-container">
+                <iframe name="Player" src="https://" allowfullscreen></iframe>
+                <p>Nome do Filme</p>
+                <div class="favorite-button" onclick="toggleFavorite(this, 'Nome do Filme', 'https://')">
+                    ☆<span>Favorito</span>
+                </div>
+            </div>
+            <!-- Adicione mais iframes conforme necessário -->
+        </div>
+        <div id="favoritos" class="category-content">
+            <h2>Favoritos</h2>
+            <div id="favorites-container"></div>
+        </div>
+        <div id="afazenda16" class="category-content">
+            <h2>A Fazenda 16</h2>
+            <div class="iframe-container">
+                <iframe name="Player" src="https://" allowfullscreen></iframe>
+                <p>Cartoon Network</p>
+                <div class="favorite-button" onclick="toggleFavorite(this, 'Cartoon Network', 'https://')">
+                    ☆<span>Favorito</span>
+                </div>
+            </div>
+        </div>
+        <div id="novidadesetendencias" class="category-content">
+            <h2>NOVIDADES E TENDÊNCIAS</h2>
+            <div class="iframe-container">
+                <iframe name="Player" src="https://" allowfullscreen></iframe>
+                <p>Cartoon Network</p>
+                <div class="favorite-button" onclick="toggleFavorite(this, 'Cartoon Network', 'https://')">
+                    ☆<span>Favorito</span>
+                </div>
             </div>
         </div>
         <div id="esportes" class="category-content">
             <h2>ESPORTES</h2>
             <div class="iframe-container">
-                <iframe name="Player" src="https://" frameborder="0" height="100" scrolling="no" width="200" allow="encrypted-media" allowfullscreen></iframe>
+                <iframe name="Player" src="https://" allowfullscreen></iframe>
                 <p>Nome do Esporte 1</p>
+                <div class="favorite-button" onclick="toggleFavorite(this, 'Nome do Esporte 1', 'https://')">
+                    ☆<span>Favorito</span>
+                </div>
             </div>
+        </div>
+        <div id="abertos" class="category-content">
+            <h2>ABERTOS</h2>
             <div class="iframe-container">
-                <iframe name="Player" src="https://" frameborder="0" height="100" scrolling="no" width="200" allow="encrypted-media" allowfullscreen></iframe>
-                <p>Nome do Esporte 2</p>
+                <iframe name="Player" src="https://" allowfullscreen></iframe>
+                <p>Nome do Filme</p>
+                <div class="favorite-button" onclick="toggleFavorite(this, 'Nome do Filme', 'https://')">
+                    ☆<span>Favorito</span>
+                </div>
             </div>
         </div>
         <div id="filmeseseries" class="category-content">
@@ -93,32 +167,125 @@
             <div class="iframe-container">
                 <iframe name="Player" src="https://" allowfullscreen></iframe>
                 <p>Nome do Filme</p>
-            </div>
-            <div class="iframe-container">
-                <iframe name="Player" src="https://" allowfullscreen></iframe>
-                <p>Nome do Filme 2</p>
+                <div class="favorite-button" onclick="toggleFavorite(this, 'Nome do Filme', 'https://')">
+                    ☆<span>Favorito</span>
+                </div>
             </div>
         </div>
+        <div id="variedades" class="category-content">
+            <h2>VARIEDADES</h2>
+            <div class="iframe-container">
+                <iframe name="Player" src="https://" allowfullscreen></iframe>
+                <p>Nome do Filme</p>
+                <div class="favorite-button" onclick="toggleFavorite(this, 'Nome do Filme', 'https://')">
+                    ☆<span>Favorito</span>
+                </div>
+            </div>
+        </div>
+        <div id="noticias" class="category-content">
+            <h2>NOTÍCIAS</h2>
+            <div class="iframe-container">
+                <iframe name="Player" src="https://" allowfullscreen></iframe>
+                <p>Nome do Filme</p>
+                <div class="favorite-button" onclick="toggleFavorite(this, 'Nome do Filme', 'https://')">
+                    ☆<span>Favorito</span>
+                </div>
+            </div>
+        </div>
+        <div id="cultura" class="category-content">
+            <h2>CULTURA</h2>
+<div class="iframe-container">
+    <iframe name="Player" src="https://" allowfullscreen></iframe>
+    <p>Nome do Filme</p>
+    <div class="favorite-button" onclick="toggleFavorite(this, 'Nome do Filme', 'https://')">
+        &#9734;<span>Favorito</span>
     </div>
-    <script>
-        function showCategory(category) {
-            var categories = document.getElementsByClassName('category-content');
-            for (var i = 0; i < categories.length; i++) {
-                categories[i].style.display = 'none';
-                var iframe = categories[i].getElementsByTagName('iframe')[0];
-                if (iframe) {
-                    iframe.src = iframe.src; // Reinicia o iframe
-                }
-            }
-            var categoryElement = document.getElementById(category);
-            if (categoryElement) {
-                categoryElement.style.display = 'block';
-            } else {
-                console.error('Categoria não encontrada: ' + category);
+</div>
+</div>
+<div id="kids" class="category-content">
+    <h2>KIDS</h2>
+    <div class="iframe-container">
+        <iframe name="Player" src="https://" allowfullscreen></iframe>
+        <p>Nome do Filme</p>
+        <div class="favorite-button" onclick="toggleFavorite(this, 'Nome do Filme', 'https://')">
+            &#9734;<span>Favorito</span>
+        </div>
+    </div>
+</div>
+<div id="adulto" class="category-content">
+    <h2>ADULTO</h2>
+    <div class="iframe-container">
+        <iframe name="Player" src="https://" allowfullscreen></iframe>
+        <p>Nome do Filme</p>
+        <div class="favorite-button" onclick="toggleFavorite(this, 'Nome do Filme', 'https://')">
+            &#9734;<span>Favorito</span>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    function showCategory(category) {
+        var categories = document.getElementsByClassName('category-content');
+        for (var i = 0; i < categories.length; i++) {
+            categories[i].style.display = 'none';
+            var iframe = categories[i].getElementsByTagName('iframe')[0];
+            if (iframe) {
+                iframe.src = iframe.src; // Reinicia o iframe
             }
         }
-        // Mostrar a primeira categoria por padrão
-        document.getElementById('desenhos').style.display = 'block';
-    </script>
+        var categoryElement = document.getElementById(category);
+        if (categoryElement) {
+            categoryElement.style.display = 'block';
+        } else {
+            console.error('Categoria não encontrada: ' + category);
+        }
+    }
+
+    function toggleFavorite(element, name, src) {
+        var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        var index = favorites.findIndex(fav => fav.name === name && fav.src === src);
+        if (index === -1) {
+            favorites.push({ name: name, src: src });
+            element.innerHTML = '&#9733;<span>Favoritado</span>'; // Estrela preenchida e texto Favoritado
+            element.classList.add('favorited');
+        } else {
+            favorites.splice(index, 1);
+            element.innerHTML = '&#9734;<span>Favorito</span>'; // Estrela vazia e texto Favorito
+            element.classList.remove('favorited');
+        }
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        updateFavorites();
+    }
+
+    function updateFavorites() {
+        var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        var container = document.getElementById('favorites-container');
+        container.innerHTML = '';
+        favorites.forEach(fav => {
+            var iframeContainer = document.createElement('div');
+            iframeContainer.className = 'iframe-container';
+            var iframe = document.createElement('iframe');
+            iframe.name = 'Player';
+            iframe.src = fav.src;
+            iframe.allowFullscreen = true;
+            var p = document.createElement('p');
+            p.textContent = fav.name;
+            var button = document.createElement('div');
+            button.className = 'favorite-button favorited';
+            button.innerHTML = '&#9733;<span>Favoritado</span>'; // Estrela preenchida e texto Favoritado
+            button.onclick = function() {
+                toggleFavorite(button, fav.name, fav.src);
+            };
+            iframeContainer.appendChild(iframe);
+            iframeContainer.appendChild(p);
+            iframeContainer.appendChild(button);
+            container.appendChild(iframeContainer);
+        });
+    }
+
+    // Mostrar a primeira categoria por padrão
+    document.getElementById('afazenda16').style.display = 'block';
+    updateFavorites();
+</script>
 </body>
 </html>
